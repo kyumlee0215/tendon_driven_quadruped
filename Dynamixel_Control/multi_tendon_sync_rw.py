@@ -71,8 +71,8 @@ class MultiTendonSyncRW:
     PROFILE_VELOCITY_UNIT       = 0.229 # rpm
 
 
-    def __init__(self, servo_ids=np.array([1,2,3]), spool_radii_mm=np.array([4.0, 4.0, 4.0]), 
-                 zero_offsets_rad=np.array([0.0, 0.0, 0.0]), device_name='/dev/ttyUSB0'):
+    def __init__(self, servo_ids=np.array([4,6,5,1,3,2,10,12,11,7,9,8]), spool_radii_mm=np.array([6.875,6.875,6.875,6.875,6.875,6.875,6.875,6.875,6.875,6.875,6.875,6.875]), 
+                 zero_offsets_rad=np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), device_name='COM10'):
         # device_name: Use the actual port assigned to the U2D2.
         # ex) Windows: "COM*", Linux: "/dev/ttyUSB*", Mac: "/dev/tty.usbserial-*"
         
