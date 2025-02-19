@@ -1,5 +1,10 @@
+import sys
+import os
+
+# Add the parent directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from Dynamixel_Control.multi_tendon_sync_rw import MultiTendonSyncRW
-import keyboard
 from scipy.spatial.transform import Rotation as R
 from scipy.optimize import fsolve
 import numpy as np
@@ -131,6 +136,7 @@ class Leg_Kinematics:
         return [eq1, eq2]
     
     def compute_tendon_lengths(self):
+        d = 17
         if self.radius1 == -1:
             t1,t2 = 0,0
         if self.radius1 < -1:
@@ -160,3 +166,9 @@ class Leg_Kinematics:
         print("Radii: ", self.radius1, self.radius2, self.radius3)
         print("Thetas: ", (self.l1+self.l2)/self.radius1 * 180 / np.pi, self.l1/self.radius2 * 180 / np.pi, self.l2/self.radius3 * 180 / np.pi)
         print("Tendons: ", self.t)
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
