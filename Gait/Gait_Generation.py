@@ -36,20 +36,20 @@ def plot_foot_path(stride_length, h1, h2, num_points=15):
     return(x_swing,y_swing,x_stance,y_stance)
 
 def calculate_radii_front(x_swing,y_swing,x_stance,y_stance):
-    leg = Leg_Kinematics(0,70,-170,[106,106],np.pi/9,"c")
+    leg = Leg_Kinematics(0,100,-175,[106,106],np.pi/9,"c")
     r = []
     t = []
     for i in range(len(x_swing)):
-      leg.y = 70 - x_swing[i]
-      leg.z = -170 + y_swing[i]
+      leg.y = 100 - x_swing[i]
+      leg.z = -175 + y_swing[i]
       leg.compute_lateral_bending()
       leg.compute_inplane_bending()
       leg.compute_tendon_lengths()
       r.append([leg.radius2,leg.radius3])
       t.append([leg.t[3],leg.t[5]])
     for i in range(len(x_stance)):
-      leg.y = 70 - x_stance[i]
-      leg.z = -170 + y_stance[i]
+      leg.y = 100 - x_stance[i]
+      leg.z = -175 + y_stance[i]
       leg.compute_lateral_bending()
       leg.compute_inplane_bending()
       leg.compute_tendon_lengths()
@@ -58,20 +58,20 @@ def calculate_radii_front(x_swing,y_swing,x_stance,y_stance):
     return(r,t)
 
 def calculate_radii_back(x_swing,y_swing,x_stance,y_stance):
-    leg = Leg_Kinematics(0,-30,-170,[106,106],np.pi/9,"c")
+    leg = Leg_Kinematics(0,40,-175,[106,106],np.pi/9,"c")
     r = []
     t = []
     for i in range(len(x_swing)):
-      leg.y = -30 + x_swing[i]
-      leg.z = -170 + y_swing[i]
+      leg.y = 40 + x_swing[i]
+      leg.z = -175 + y_swing[i]
       leg.compute_lateral_bending()
       leg.compute_inplane_bending()
       leg.compute_tendon_lengths()
       r.append([leg.radius2,leg.radius3])
       t.append([leg.t[3],leg.t[5]])
     for i in range(len(x_stance)):
-      leg.y = -30 + x_stance[i]
-      leg.z = -170 + y_stance[i]
+      leg.y = 40 + x_stance[i]
+      leg.z = -175 + y_stance[i]
       leg.compute_lateral_bending()
       leg.compute_inplane_bending()
       leg.compute_tendon_lengths()
