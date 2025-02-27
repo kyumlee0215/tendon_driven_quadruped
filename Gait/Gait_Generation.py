@@ -35,7 +35,8 @@ def plot_foot_path(stride_length, h1, h2, num_points=15):
     print(x_swing,x_stance)
     return(x_swing,y_swing,x_stance,y_stance)
 
-def calculate_radii_front(x_swing,y_swing,x_stance,y_stance):
+def calculate_radii_front(x_swing,y_swing,x_stance,y_stance): 
+    #Calculate Inverse Kinematics for legs for each point on foot path
     leg = Leg_Kinematics(0,100,-175,[106,106],np.pi/9,"c")
     r = []
     t = []
@@ -80,17 +81,6 @@ def calculate_radii_back(x_swing,y_swing,x_stance,y_stance):
     return(r,t)
     
 def compute_beam_points(radii, l1, l2, num_points=400):
-    """
-    Computes the (x, y) coordinates along a two-segment beam bending downward.
-
-    Parameters:
-      radii     : pair of radii [r1, r2] for the first and second segments.
-      l1, l2    : arc lengths of the first and second segments.
-      num_points: total number of points (divided between the two segments).
-
-    Returns:
-      x, y: 1D arrays with the coordinates of the beam.
-    """
     r1, r2 = radii
     theta0 = -np.pi / 9  # Initial tangent: +30° (30° up from horizontal)
 
@@ -124,14 +114,7 @@ def compute_beam_points(radii, l1, l2, num_points=400):
     return x, y
 
 
-def plot_beams(radii_pairs, l1, l2):
-    """
-    Plots beams for each pair of radii on the same figure.
-
-    Parameters:
-      radii_pairs: List of pairs [(r1, r2), (r1, r2), ...].
-      l1, l2     : Arc lengths for the first and second segments.
-    """
+def plot_legs(radii_pairs, l1, l2):
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.set_aspect('equal')
     # Generate a colormap for different beams.
@@ -155,8 +138,8 @@ if __name__ == '__main__':
     # l2 = 0.8  # Arc length of the second segment.
     # plot_beams(radii_pairs, l1, l2)
     x_swing,y_swing,x_stance,y_stance = plot_foot_path(100,20,5)
-    q,t = calculate_radii(x_swing,y_swing,x_stance,y_stance)
-    plot_beams(q,106,106)
+    q,t = calculate_radii_front(x_swing,y_swing,x_stance,y_stance)
+    plot_legs(q,106,106)
     print(t)
     
 
